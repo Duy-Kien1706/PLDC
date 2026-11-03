@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hệ Thống Ôn Thi Pháp Luật Đại Cương (300 Câu: Đề Thi Học Phần & Google Forms)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="brand" onclick="switchTab('pdf200')">
+        <div class="brand-icon">⚖️</div>
+        <div>
+          <div class="brand-title">Pháp Luật Đại Cương (TLAW0111)</div>
+          <div class="brand-subtitle">200 câu Đề thi học phần (PDF) & 100 câu Google Forms</div>
+        </div>
+      </div>
+
+      <nav class="nav-tabs">
+        <button id="tab-btn-pdf200" class="nav-btn active" onclick="switchTab('pdf200')">
+          🎓 Đề Thi Học Phần (200 Câu PDF)
+        </button>
+        <button id="tab-btn-home" class="nav-btn" onclick="switchTab('home')">
+          📱 Bộ Đề Google Forms (100 Câu)
+        </button>
+        <button id="tab-btn-quiz" class="nav-btn hidden" onclick="switchTab('quiz')">
+          📝 Đang Làm Bài
+        </button>
+        <button id="tab-btn-bank" class="nav-btn" onclick="switchTab('bank')">
+          🔍 Tra Cứu 300 Câu
+        </button>
+        <button id="theme-btn" class="icon-btn" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối">
+          🌙
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ==================== SHARED QUIZ CONFIGURATION ==================== -->
+    <div class="config-card">
+      <div class="config-title">⚙️ Tùy chỉnh chế độ làm bài trước khi bắt đầu</div>
+      <div class="config-grid">
+        <div class="config-item">
+          <label for="cfg-mode">Chế độ chấm điểm</label>
+          <select id="cfg-mode" class="select-input">
+            <option value="practice">💡 Luyện tập (Biết Đúng/Sai & Đáp án ngay)</option>
+            <option value="exam">🎓 Thi thử (Làm xong bấm Nộp bài mới chấm điểm)</option>
+          </select>
+        </div>
+        <div class="config-item">
+          <label for="cfg-view">Kiểu hiển thị câu hỏi</label>
+          <select id="cfg-view" class="select-input">
+            <option value="single">🎯 Từng câu một (Hỗ trợ phím tắt 1-4, A-D)</option>
+            <option value="all">📋 Danh sách toàn bộ (Cuộn dọc tất cả câu)</option>
+          </select>
+        </div>
+        <div class="config-item">
+          <label for="cfg-time">Thời gian làm bài</label>
+          <select id="cfg-time" class="select-input">
+            <option value="0">♾️ Không giới hạn (Đếm thời gian)</option>
+            <option value="30">⏱️ 30 phút</option>
+            <option value="45">⏱️ 45 phút</option>
+            <option value="60">⏱️ 60 phút</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="checkbox-row">
+        <label class="checkbox-label">
+          <input type="checkbox" id="cfg-shuffle-q" />
+          <span>🔀 Đảo thứ tự câu hỏi</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="cfg-shuffle-opt" />
+          <span>🔄 Đảo thứ tự đáp án (Tự động giữ nguyên các câu có "Cả A, B, C...")</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 0: NGÂN HÀNG 200 CÂU ĐỀ THI HỌC PHẦN (PDF) ==================== -->
+    <section id="view-pdf200">
+      <div class="hero-banner">
+        <div>
+          <h1>Ngân Hàng Câu Hỏi Đề Thi Học Phần (TLAW0111)</h1>
+          <p>Trích xuất 100% từ file PDF Ngân hàng đề thi chính thức (200 câu hỏi chia theo 5 Phần và 3 Cấp độ kèm đáp án chuẩn).</p>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">200</span>
+            <span class="hero-stat-label">Câu hỏi Đề thi</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">5 Phần</span>
+            <span class="hero-stat-label">Chuẩn cấu trúc</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">50 Câu</span>
+            <span class="hero-stat-label">Ma trận đề thi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deck-grid">
+        <!-- Official 50-question Exam by Weight Matrix -->
+        <div class="deck-card" style="border: 2px solid var(--primary);">
+          <div>
+            <span class="deck-badge badge-blue">⭐ ĐỀ THI CHUẨN MA TRẬN TRỌNG SỐ (50 CÂU)</span>
+            <h3>Thi Thử Đề Chuẩn 50 Câu (TLAW0111)</h3>
+            <p>Tự động rút ngẫu nhiên 50 câu theo đúng <b>Bảng trọng số đề thi</b> trang đầu file PDF: Phần 1 (5 câu), Phần 2 (20 câu), Phần 3 (20 câu - gồm 12 bài tập chia thừa kế), Phần 4 (2 câu), Phần 5 (3 câu).</p>
+            <div class="deck-parts">
+              <span class="part-chip">Cấp độ 1: 15 câu</span>
+              <span class="part-chip">Cấp độ 2: 19 câu</span>
+              <span class="part-chip">Cấp độ 3: 16 câu</span>
+            </div>
+          </div>
+          <div class="deck-actions">
+            <button class="btn btn-primary" onclick="startQuizSession('pdf200-matrix')">
+              🎯 Tạo Đề Thi Chuẩn 50 Câu Ngay
+            </button>
+          </div>
+        </div>
+
+        <!-- All 200 Questions or By Range -->
+        <div class="deck-card">
+          <div>
+            <span class="deck-badge badge-success">📚 TOÀN BỘ 200 CÂU TRONG FILE PDF</span>
+            <h3>Luyện Trọn Bộ 200 Câu (Hoặc Chia Nhỏ 50 Câu)</h3>
+            <p>Làm lần lượt toàn bộ 200 câu hỏi từ Câu 1 đến Câu 200 theo đúng thứ tự trong file PDF hoặc chia thành 4 đợt (mỗi đợt 50 câu).</p>
+            <div class="deck-parts">
+              <span class="part-chip" onclick="startQuizSession('pdf200-range', [0, 50])">Câu 1 - 50</span>
+              <span class="part-chip" onclick="startQuizSession('pdf200-range', [50, 100])">Câu 51 - 100</span>
+              <span class="part-chip" onclick="startQuizSession('pdf200-range', [100, 150])">Câu 101 - 150</span>
+              <span class="part-chip" onclick="startQuizSession('pdf200-range', [150, 200])">Câu 151 - 200</span>
+            </div>
+          </div>
+          <div class="deck-actions">
+            <button class="btn btn-purple" onclick="startQuizSession('pdf200-all')">
+              🚀 Làm Trọn Bộ 200 Câu
+            </button>
+          </div>
+        </div>
+
+        <!-- Practice by 5 Parts -->
+        <div class="deck-card">
+          <div>
+            <span class="deck-badge badge-purple">📑 ÔN TẬP THEO 5 PHẦN KIẾN THỨC</span>
+            <h3>Chia Theo Từng Phần (Phần 1 → Phần 5)</h3>
+            <p>Ôn tập chuyên sâu từng mảng kiến thức theo cột "Phần" trong bảng ngân hàng câu hỏi đề thi:</p>
+            <div class="deck-parts" style="margin-top:0.75rem;">
+              <button class="btn btn-outline" style="width:100%;justify-content:space-between;" onclick="startQuizSession('pdf200-part', 1)">
+                <span>🏛️ Phần 1: Nhà nước & Bộ máy NN</span>
+                <b>23 câu</b>
+              </button>
+              <button class="btn btn-outline" style="width:100%;justify-content:space-between;" onclick="startQuizSession('pdf200-part', 2)">
+                <span>📜 Phần 2: Lý luận chung về Pháp luật</span>
+                <b>64 câu</b>
+              </button>
+              <button class="btn btn-outline" style="width:100%;justify-content:space-between;" onclick="startQuizSession('pdf200-part', 3)">
+                <span>👨‍👩‍👧‍👦 Phần 3: Luật Dân sự & Chia thừa kế</span>
+                <b>91 câu</b>
+              </button>
+              <button class="btn btn-outline" style="width:100%;justify-content:space-between;" onclick="startQuizSession('pdf200-part', 4)">
+                <span>🚓 Phần 4: Luật Hành chính</span>
+                <b>8 câu</b>
+              </button>
+              <button class="btn btn-outline" style="width:100%;justify-content:space-between;" onclick="startQuizSession('pdf200-part', 5)">
+                <span>⚖️ Phần 5: Luật Hình sự</span>
+                <b>14 câu</b>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practice by Difficulty Level -->
+        <div class="deck-card">
+          <div>
+            <span class="deck-badge badge-warning">🔥 ÔN TẬP THEO CẤP ĐỘ KHÓ (1 - 2 - 3)</span>
+            <h3>Luyện Theo Cấp Độ & Bài Tập Chia Thừa Kế</h3>
+            <p>Đặc biệt hữu ích để rèn kỹ năng giải nhanh các bài toán chia di sản thừa kế ở Cấp độ 3:</p>
+            <div class="deck-parts" style="margin-top:0.75rem;">
+              <button class="btn btn-outline" style="width:100%;justify-content:space-between;" onclick="startQuizSession('pdf200-level', 1)">
+                <span>🟢 Cấp độ 1 ( Lý thuyết cơ bản )</span>
+                <b>74 câu</b>
+              </button>
+              <button class="btn btn-outline" style="width:100%;justify-content:space-between;" onclick="startQuizSession('pdf200-level', 2)">
+                <span>🟡 Cấp độ 2 ( Hiểu & Phân tích )</span>
+                <b>72 câu</b>
+              </button>
+              <button class="btn btn-outline" style="width:100%;justify-content:space-between;border-color:var(--warning);color:var(--warning);" onclick="startQuizSession('pdf200-level', 3)">
+                <span>🔴 Cấp độ 3 ( Bài tập tình huống & Thừa kế )</span>
+                <b>54 câu</b>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 1: 100 CÂU GOOGLE FORMS ==================== -->
+    <section id="view-home" class="hidden">
+      <div class="hero-banner">
+        <div>
+          <h1>Bộ Đề Trắc Nghiệm Google Forms (100 Câu)</h1>
+          <p>Trích xuất đầy đủ 100% từ 41 ảnh chụp màn hình Google Forms (Bộ đề 1 & Bộ đề 2), đã hiệu đính 12 câu bị 0/2 điểm.</p>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">100</span>
+            <span class="hero-stat-label">Tổng số câu hỏi</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" id="stat-trap-count">12</span>
+            <span class="hero-stat-label">Câu 0/2 ở ảnh gốc</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" id="stat-user-wrong">0</span>
+            <span class="hero-stat-label">Câu bạn từng sai</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deck Cards -->
+      <div class="deck-grid">
+        <!-- Deck 1 -->
+        <div class="deck-card">
+          <div>
+            <span class="deck-badge badge-blue">📘 BỘ ĐỀ 1 • 16 ẢNH GIAO DIỆN XANH</span>
+            <h3>Bộ Đề 1 (50 Câu - 7 Phần)</h3>
+            <p>Nguồn gốc Nhà nước, Kiểu & Hình thức nhà nước, Quy phạm pháp luật (Giả định - Quy định - Chế tài), Quan hệ pháp luật, Tư cách pháp nhân.</p>
+            <div class="deck-parts">
+              <span class="part-chip" onclick="startQuizSession('set1', 'Phần 1')">Phần 1 (5 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set1', 'Phần 2')">Phần 2 (5 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set1', 'Phần 3')">Phần 3 (5 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set1', 'Phần 4')">Phần 4 (10 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set1', 'Phần 5')">Phần 5 (10 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set1', 'Phần 6')">Phần 6 (10 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set1', 'Phần 7')">Phần 7 (5 câu)</span>
+            </div>
+          </div>
+          <div class="deck-actions">
+            <button class="btn btn-primary" onclick="startQuizSession('set1')">
+              🚀 Làm trọn Bộ đề 1 (50 câu)
+            </button>
+          </div>
+        </div>
+
+        <!-- Deck 2 -->
+        <div class="deck-card">
+          <div>
+            <span class="deck-badge badge-purple">🟪 BỘ ĐỀ 2 • 25 ẢNH GIAO DIỆN TÍM</span>
+            <h3>Bộ Đề 2 (50 Câu - 5 Phần)</h3>
+            <p>Hệ thống pháp luật Việt Nam, Thực hiện & Áp dụng pháp luật, Hiến pháp 2013, Ngành luật Hành chính, Ngành luật Dân sự & Hình sự.</p>
+            <div class="deck-parts">
+              <span class="part-chip" onclick="startQuizSession('set2', 'Phần 1')">Phần 1 (10 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set2', 'Phần 2')">Phần 2 (10 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set2', 'Phần 3')">Phần 3 (10 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set2', 'Phần 4')">Phần 4 (10 câu)</span>
+              <span class="part-chip" onclick="startQuizSession('set2', 'Phần 5')">Phần 5 (10 câu)</span>
+            </div>
+          </div>
+          <div class="deck-actions">
+            <button class="btn btn-purple" onclick="startQuizSession('set2')">
+              🚀 Làm trọn Bộ đề 2 (50 câu)
+            </button>
+          </div>
+        </div>
+
+        <!-- All 100 Questions -->
+        <div class="deck-card">
+          <div>
+            <span class="deck-badge badge-success">📚 TỔNG HỢP GOOGLE FORMS</span>
+            <h3>Full 100 Câu Google Forms</h3>
+            <p>Kết hợp toàn bộ 50 câu của Bộ đề 1 và 50 câu của Bộ đề 2 để ôn tập tổng thể trong 1 lần làm bài.</p>
+          </div>
+          <div class="deck-actions">
+            <button class="btn btn-primary" onclick="startQuizSession('all100')">
+              🔥 Làm cả 100 câu
+            </button>
+            <button class="btn btn-outline" onclick="startQuizSession('random40')">
+              🎲 Đề ngẫu nhiên 40 câu
+            </button>
+          </div>
+        </div>
+
+        <!-- Trap / Wrong Questions -->
+        <div class="deck-card">
+          <div>
+            <span class="deck-badge badge-warning">⚠️ CHUYÊN ĐỀ CÂU DỄ SAI & CÂU BẪY</span>
+            <h3>Ôn Tập Các Câu Dễ Sai (0/2 Điểm)</h3>
+            <p>Tổng hợp riêng 12 câu mà bài làm trong ảnh chụp màn hình gốc bị 0/2 điểm (kèm giải thích chi tiết đáp án chuẩn) và các câu bạn làm sai.</p>
+          </div>
+          <div class="deck-actions">
+            <button class="btn btn-outline" style="flex:1;border-color:var(--warning);color:var(--warning);" onclick="startQuizSession('trap')">
+              ⚡ Ôn 12 câu 0/2 trong ảnh
+            </button>
+            <button class="btn btn-outline" style="flex:1;" onclick="startQuizSession('user-wrong')">
+              🔁 Câu bạn sai (<span id="btn-user-wrong-count">0</span>)
+            </button>
+            <button class="icon-btn" onclick="clearWrongHistory()" title="Xóa lịch sử câu sai">
+              🗑️
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: QUIZ INTERFACE ==================== -->
+    <section id="view-quiz" class="hidden">
+      <div class="quiz-topbar">
+        <div class="quiz-info-left">
+          <button class="btn btn-outline" onclick="switchTab('pdf200')">⬅️ Chọn đề khác</button>
+          <span class="quiz-title-pill" id="quiz-title-display">Bộ đề</span>
+          <span class="quiz-progress-text" id="quiz-progress-display">Đã làm: 0/50</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap;">
+          <span class="timer-badge" id="quiz-timer">⏱️ 00:00</span>
+          <button class="btn btn-outline" id="btn-toggle-view" onclick="toggleViewMode()">
+            📋 Xem tất cả câu
+          </button>
+          <button class="btn btn-success" id="btn-submit-quiz" onclick="handleSubmitOrRestart()">
+            ✅ Nộp bài & Chấm điểm
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Summary (Shown after submit) -->
+      <div id="quiz-result-banner" class="result-banner hidden"></div>
+
+      <div class="quiz-layout">
+        <!-- Main Questions Area -->
+        <div id="quiz-questions-container"></div>
+
+        <!-- Right Sidebar Palette -->
+        <aside class="sidebar-card">
+          <div class="sidebar-title">
+            <span>Danh sách câu hỏi</span>
+          </div>
+          <div class="palette-legend">
+            <span class="legend-item"><span class="legend-dot" style="background:var(--primary)"></span> Đã chọn</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--success)"></span> Đúng</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--danger)"></span> Sai</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#f59e0b;border-radius:50%"></span> Đánh dấu</span>
+          </div>
+          <div id="palette-grid" class="palette-grid"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: QUESTION BANK / SEARCH ==================== -->
+    <section id="view-bank" class="hidden">
+      <div class="bank-controls">
+        <div class="bank-search-wrap">
+          <input
+            type="text"
+            id="bank-search-input"
+            class="search-input"
+            placeholder="🔍 Nhập từ khóa câu hỏi hoặc đáp án để tra cứu nhanh trong 300 câu..."
+            oninput="renderQuestionBank()"
+          />
+        </div>
+        <div>
+          <select id="bank-filter-set" class="select-input" onchange="renderQuestionBank()">
+            <option value="all">Tất cả 300 câu (Đề thi PDF + Google Forms)</option>
+            <option value="3">🎓 Ngân hàng Đề thi Học phần (200 câu PDF)</option>
+            <option value="1">📘 Bộ đề 1 Google Forms (50 câu xanh)</option>
+            <option value="2">🟪 Bộ đề 2 Google Forms (50 câu tím)</option>
+            <option value="trap">⚠️ Chỉ hiện 12 câu bị 0/2 điểm trong ảnh gốc</option>
+          </select>
+        </div>
+        <span id="bank-count-label" style="font-size:0.88rem;font-weight:600;color:var(--text-muted);">
+          Hiển thị 300/300 câu
+        </span>
+      </div>
+
+      <div id="bank-list-container"></div>
+    </section>
+  </main>
+
+  <!-- Modal for viewing original screenshot -->
+  <div id="image-modal" class="modal-backdrop hidden" onclick="closeImageModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span id="modal-title">Ảnh chụp màn hình gốc</span>
+        <button id="modal-close-btn" class="icon-btn" onclick="closeImageModal()">✕</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="bank200.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
